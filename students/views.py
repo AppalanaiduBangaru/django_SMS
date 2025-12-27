@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Student
-from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from .forms import StudentForm
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+
+students = Student.objects.all()
+paginator = Paginator(students, 10)  
+
 
 @login_required
 def student_list(request):
@@ -20,6 +25,14 @@ def student_list(request):
         'page_obj': page_obj,
         'query': query
     })
+    
+    
+
+
+
+def home(request):
+    return render(request, 'home.html')
+
 
 def student_create(request):
     form = StudentForm(request.POST or None)
