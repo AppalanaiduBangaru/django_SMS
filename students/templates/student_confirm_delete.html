@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirm Delete</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff512f, #dd2476);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .delete-card {
+      background: #ffffff;
+      padding: 35px 40px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h2 {
+      color: #d32f2f;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .delete-btn {
+      background-color: #e53935;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background-color: #c62828;
+      transform: scale(1.08);
+      box-shadow: 0 8px 20px rgba(229, 57, 53, 0.4);
+    }
+
+    .cancel-btn {
+      background-color: #9e9e9e;
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .cancel-btn:hover {
+      background-color: #757575;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="delete-card">
+    <h2>⚠ Confirm Delete</h2>
+    <p>Are you sure you want to delete <strong>{{ student.name }}</strong>?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="buttons">
+        <button type="submit" class="delete-btn">Yes, Delete</button>
+        <a href="{% url 'student_list' %}" class="cancel-btn">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
