@@ -28,7 +28,7 @@ DEBUG = True
 # settings.py
 
 ALLOWED_HOSTS = [
-    "django-sms-2.onrender.com",                    
+    "django-sms-3.onrender.com",                    
     "localhost",   
      "127.0.0.1",
      "127.0.0.1:8000"               
