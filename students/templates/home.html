@@ -1,54 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Project Home</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        h1 {
-            color: #333;
-        }
-        .container {
-            background-color: #fff;
-            padding: 40px 60px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        a {
-            display: inline-block;
-            margin: 15px;
-            padding: 12px 24px;
-            background-color: #4CAF50;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
-        a:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Project Home</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Main Card */
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 50px 60px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    h1 {
+      color: #2d3748;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #4a5568;
+      font-size: 16px;
+      margin-bottom: 35px;
+    }
+
+    /* Button group */
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    a {
+      display: inline-block;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, #667eea, #5a67d8);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(102,126,234,0.35);
+    }
+
+    a:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(102,126,234,0.45);
+    }
+
+    a:active {
+      transform: scale(0.97);
+    }
+
+    /* Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =====================
+       MEDIA QUERIES
+       ===================== */
+
+    /* Tablets */
+    @media (max-width: 768px) {
+      .container {
+        padding: 40px 35px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 22px;
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 14px;
+        margin-bottom: 25px;
+      }
+
+      a {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      .btn-group {
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Welcome to Student Project</h1>
-        <p>Navigate to your desired page:</p>
-        {% comment %} <a href="{% url 'student_list' %}">Students List</a> {% endcomment %}
-        {% comment %} <a href="{% url 'student_create' %}">Add Student</a> {% endcomment %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Register</a>
+
+  <div class="container">
+    <h1>🎓 Student Project</h1>
+    <p>Welcome! Choose where you want to go.</p>
+
+    <div class="btn-group">
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
+
+      {# Uncomment when needed #}
+      {# <a href="{% url 'student_list' %}">Students List</a> #}
+      {# <a href="{% url 'student_create' %}">Add Student</a> #}
     </div>
+  </div>
+
 </body>
 </html>

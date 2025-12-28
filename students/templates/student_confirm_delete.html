@@ -3,100 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <title>Confirm Delete</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      height: 100vh;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #ff512f, #dd2476);
-      font-family: Arial, Helvetica, sans-serif;
+      padding: 20px;
     }
 
+    /* Card */
     .delete-card {
-      background: #ffffff;
-      padding: 35px 40px;
-      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 40px 45px;
+      border-radius: 20px;
       width: 100%;
-      max-width: 420px;
+      max-width: 450px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 0.6s ease-in-out;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+      animation: fadeInUp 0.6s ease forwards;
     }
 
     h2 {
-      color: #d32f2f;
+      color: #c62828;
+      font-size: 28px;
       margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .warning-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 18px;
-      color: #333;
+      font-size: 17px;
+      color: #374151;
       margin-bottom: 30px;
+      line-height: 1.5;
     }
 
+    strong {
+      color: #111827;
+    }
+
+    /* Buttons */
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    button {
-      padding: 12px 22px;
-      font-size: 16px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .delete-btn {
-      background-color: #e53935;
-      color: white;
-    }
-
-    .delete-btn:hover {
-      background-color: #c62828;
-      transform: scale(1.08);
-      box-shadow: 0 8px 20px rgba(229, 57, 53, 0.4);
-    }
-
+    button,
     .cancel-btn {
-      background-color: #9e9e9e;
-      color: white;
+      padding: 14px 26px;
+      font-size: 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      border: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 22px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
+      min-width: 140px;
+    }
+
+    /* Delete button */
+    .delete-btn {
+      background: linear-gradient(135deg, #e53935, #c62828);
+      color: white;
+      box-shadow: 0 10px 25px rgba(229, 57, 53, 0.4);
+    }
+
+    .delete-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(229, 57, 53, 0.55);
+    }
+
+    .delete-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Cancel button */
+    .cancel-btn {
+      background: #9ca3af;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
     .cancel-btn:hover {
-      background-color: #757575;
-      transform: scale(1.05);
+      background: #6b7280;
+      transform: translateY(-2px);
     }
 
-    @keyframes fadeIn {
+    /* Animation */
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
+    /* =====================
+       MEDIA QUERIES
+       ===================== */
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .delete-card {
+        padding: 30px 22px;
+        border-radius: 16px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 15px;
+        margin-bottom: 25px;
+      }
+
+      .buttons {
+        gap: 14px;
+      }
+
+      button,
+      .cancel-btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
 <body>
+
   <div class="delete-card">
-    <h2>⚠ Confirm Delete</h2>
-    <p>Are you sure you want to delete <strong>{{ student.name }}</strong>?</p>
+    <div class="warning-icon">⚠️</div>
+    <h2>Confirm Delete</h2>
+
+    <p>
+      Are you sure you want to delete
+      <strong>{{ student.name }}</strong>?
+      <br>This action cannot be undone.
+    </p>
 
     <form method="post">
       {% csrf_token %}
@@ -106,5 +174,6 @@
       </div>
     </form>
   </div>
+
 </body>
 </html>
